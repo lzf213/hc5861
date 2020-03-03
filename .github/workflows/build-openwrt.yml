@@ -58,9 +58,9 @@ jobs:
         cd openwrt
         ../$DIY_SH
 
-    - name: SSH connection to Actions
+#   - name: SSH connection to Actions
 #      uses: lzf213/debugger-action@master
-      if: env.SSH_ACTIONS == 'true'
+#      if: env.SSH_ACTIONS == 'true'
 
     - name: Download package
       id: package
