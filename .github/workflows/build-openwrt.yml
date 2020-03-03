@@ -42,7 +42,7 @@ jobs:
     - name: Initialization environment
       env:
         DEBIAN_FRONTEND: noninteractive
-      run: 
+      run: |
         sudo apt-get update
         sudo apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint
     
@@ -56,7 +56,7 @@ jobs:
       run: cd openwrt && ./scripts/feeds install -a
 
     - name: Load custom configuration
-      run: 
+      run: |
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         chmod +x $DIY_SH
@@ -69,7 +69,7 @@ jobs:
 
     - name: Download package
       id: package
-      run: 
+      run: |
         cd openwrt
         make defconfig
         make download -j8
@@ -78,7 +78,7 @@ jobs:
 
     - name: Compile the firmware
       id: compile
-      run: 
+      run: |
         cd openwrt
         echo -e "$(nproc) thread compile"
         make -j$(nproc) || make -j1 V=s
@@ -94,7 +94,7 @@ jobs:
     - name: Organize files
       id: organize
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
-      run: 
+      run: |
         cd openwrt/bin/targets/*/*
         rm -rf packages
         echo "::set-env name=FIRMWARE::$PWD"
