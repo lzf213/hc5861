@@ -4,9 +4,7 @@ name: Build Padawan
 on:
    push:
     branches: [ hc5861 ]
-  pull_request:
-    branches: [ hc5861 ]
-       
+         
 #  schedule:
 #    - cron: 0 8 * * 5
 #  watch:
