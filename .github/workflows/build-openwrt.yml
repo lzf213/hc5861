@@ -17,8 +17,8 @@ on:
 
 env:
   REPO_URL: https://github.com/lzf213/openwrt.git
-  REPO_BRANCH: lzf213-patch-hc5861 
-  CONFIG_FILE: hc5861.config
+  REPO_BRANCH: lzf213-patch-hc5861
+  CONFIG_FILE: .config
   DIY_SH: diy.sh
   SSH_ACTIONS: false
   UPLOAD_BIN_DIR: false
@@ -44,7 +44,7 @@ jobs:
         sudo apt autoclean  -y
         
     - name: Clone source code
-      run:  git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
+      run: git clone  $REPO_URL
 
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
@@ -60,16 +60,16 @@ jobs:
         cd openwrt
         ../$DIY_SH
 
-   - name: SSH connection to Actions
-      uses: P3TERX/debugger-action@master
-      if: env.SSH_ACTIONS == 'true'
+#   - name: SSH connection to Actions
+#      uses: lzf213/debugger-action@master
+#      if: env.SSH_ACTIONS == 'true'
 
     - name: Download package
       id: package
       run: |
         cd openwrt
         make defconfig
-        make download 
+        make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
