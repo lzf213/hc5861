@@ -17,7 +17,7 @@ on:
 
 env:
   REPO_URL: https://github.com/lzf213/openwrt.git
-  REPO_BRANCH: lzf213-patch-hc5861 
+  REPO_BRANCH: master 
   CONFIG_FILE: hc5861.config
   DIY_SH: diy.sh
   SSH_ACTIONS: false
