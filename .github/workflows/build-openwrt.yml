@@ -16,7 +16,7 @@ on:
 #    types: started
 
 env:
-  REPO_URL: https://github.com/lzf213/openwrt.git
+  REPO_URL: https://github.com/openwrt/openwrt.git
   REPO_BRANCH: v19.07.2
   CONFIG_FILE: hc5861.config
   DIY_SH: diy.sh
