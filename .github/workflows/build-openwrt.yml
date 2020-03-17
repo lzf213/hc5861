@@ -60,7 +60,7 @@ jobs:
         cd openwrt
         ../$DIY_SH
 
- - name: SSH connection to Actions
+    - name: SSH connection to Actions
       uses: P3TERX/debugger-action@master
       if: env.SSH_ACTIONS == 'true'
 
