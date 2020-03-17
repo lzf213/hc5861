@@ -17,7 +17,7 @@ on:
 
 env:
   REPO_URL: https://github.com/openwrt/openwrt.git
-  REPO_BRANCH: v19.07.2
+  REPO_BRANCH: openwrt-19.07
   CONFIG_FILE: hc5861.config
   DIY_SH: diy.sh
   SSH_ACTIONS: false
