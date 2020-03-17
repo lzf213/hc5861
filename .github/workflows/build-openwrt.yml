@@ -20,7 +20,7 @@ env:
   REPO_BRANCH: v19.07.2
   CONFIG_FILE: hc5861.config
   DIY_SH: diy.sh
-  SSH_ACTIONS: true
+  SSH_ACTIONS: false
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   TZ: Asia/Shanghai
@@ -69,7 +69,11 @@ jobs:
       run: |
         cd openwrt
         make defconfig
+        make download -j8
         find dl -size -1024c -exec ls -l {} \;
+        find dl -size -1024c -exec rm -f {} \;
+
+    - name: Compile the firmware
       id: compile
       run: |
         cd openwrt
